@@ -11,8 +11,9 @@ public class FileMetadata
     public DateTime UploadedAt { get; private set; }
     public string Owner { get; private set; }
     public string Checksum { get; private set; }
+    public Guid WorkId { get; private set; }
 
-    public FileMetadata(string filePath, string owner, string checksum, long size)
+    public FileMetadata(string filePath, string owner, string checksum, long size, Guid workId)
     {
         if (!Path.Exists(filePath))
         {
@@ -27,6 +28,7 @@ public class FileMetadata
         UploadedAt = DateTime.UtcNow;
         Owner = owner;
         Checksum = checksum;
+        WorkId = workId;
     }
 
     public bool CheckCheckSum()
