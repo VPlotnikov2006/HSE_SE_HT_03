@@ -21,6 +21,11 @@ public class GetFileUseCase(IFileProvider fileProvider, IFileRepository fileRepo
                 $"File size mismatch: real={content.Length}, meta={metadata.Size}");
         }
 
+        if (Utils.Checksum.Compute(content) != metadata.Checksum)
+        {
+            throw new ArgumentException("Checksum mismatch");
+        }
+
         return new GetFileResponse(
             metadata,
             content

@@ -1,6 +1,5 @@
 namespace FileStorage.Application.UseCases.GetFileForAnalysis;
 
-public class GetFileRequest(Guid fileId)
+public record GetFileRequest(Guid FileId)
 {
-    public Guid FileId { get; private set; } = fileId;
 }

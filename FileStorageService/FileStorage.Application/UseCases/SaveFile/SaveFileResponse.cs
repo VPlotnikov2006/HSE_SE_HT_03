@@ -1,6 +1,5 @@
 namespace FileStorage.Application.UseCases.SaveFile;
 
-public class SaveFileResponse(Guid fileId)
+public record SaveFileResponse(Guid FileId)
 {
-    public Guid FileId { get; init; } = fileId;
 }
