@@ -10,7 +10,7 @@ public class GetFileUseCase(IFileProvider fileProvider, IFileRepository fileRepo
     public GetFileResponse Execute(GetFileRequest request)
     {
         var fileId = request.FileId;
-        var metadata = _fileRepository.Files.Find(request.FileId) 
+        var metadata = _fileRepository.GetById(request.FileId) 
             ?? throw new FileNotFoundException($"File {fileId} metadata not found.");
 
         var content = _fileProvider.GetFile(fileId, metadata.OriginalName, metadata.UploadedAt);

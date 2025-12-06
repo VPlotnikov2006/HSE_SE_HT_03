@@ -9,11 +9,6 @@ public class GetFilesUseCase(IFileProvider fileProvider, IFileRepository fileRep
 
     public GetFilesResponse Execute(GetFilesRequest request)
     {
-        return new([..
-            _fileRepository
-            .Files
-            .Where(
-                data => data.WorkId == request.WorkId
-            ).Select(data => data.FileId)]);
+        return new([.. _fileRepository.GetFileIds(request.WorkId)]);
     }
 }

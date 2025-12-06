@@ -1,12 +1,12 @@
 using FileStorage.Domain;
-using Microsoft.EntityFrameworkCore;
 
 namespace FileStorage.Application.Interfaces;
 
-// TODO убрать DbSet наружу (в Infrastructure)
 public interface IFileRepository
 {
-    DbSet<FileMetadata> Files {get; set; }
+    FileMetadata GetById(Guid fileId);
+    IReadOnlyCollection<Guid> GetFileIds(Guid workId);
+    void Add(FileMetadata metadata);
 
     public bool SaveChanges();
 }

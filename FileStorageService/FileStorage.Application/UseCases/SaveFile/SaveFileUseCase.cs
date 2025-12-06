@@ -27,7 +27,7 @@ public class SaveFileUseCase(IFileProvider fileProvider, IFileRepository fileRep
             metadata.UploadedAt
         );
 
-        _fileRepository.Files.Add(metadata);
+        _fileRepository.Add(metadata);
         _fileRepository.SaveChanges();
 
         return new(metadata.FileId);
