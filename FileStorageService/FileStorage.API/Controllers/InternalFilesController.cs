@@ -12,15 +12,17 @@ namespace FileStorage.API.Controllers
         private readonly GetByWorkIdUseCase _getByWorkIdUseCase = getByWorkIdUseCase;
 
         [HttpGet("by-work/{workId:guid}")]
-        public IActionResult GetByWorkId([FromRoute(Name = "workId")] GetByWorkIdRequest request)
+        public IActionResult GetByWorkId([FromRoute] Guid workId)
         {
+            var request = new GetByWorkIdRequest() { WorkId = workId };
             var result = _getByWorkIdUseCase.Execute(request);
             return Ok(result);
         }
 
         [HttpGet("{fileId:guid}")]
-        public IActionResult GetById([FromRoute(Name = "fileId")] GetFileRequest request)
+        public IActionResult GetById([FromRoute] Guid fileId)
         {
+            var request = new GetFileRequest() { FileId = fileId};
             var result = _getFileUseCase.Execute(request);
             return Ok(result);
         }

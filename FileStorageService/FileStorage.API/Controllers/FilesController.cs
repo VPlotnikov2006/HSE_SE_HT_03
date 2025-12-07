@@ -1,3 +1,4 @@
+using FileStorage.API.DTOs;
 using FileStorage.Application.UseCases.SaveFile;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,9 +12,21 @@ namespace FileStorage.API.Controllers
         private readonly SaveFileUseCase _saveFileUseCase = saveFileUseCase;
 
         [HttpPost]
-        public IActionResult Upload([FromForm] SaveFileRequest request)
+        [Consumes("multipart/form-data")]
+        public async Task<IActionResult> Upload([FromForm] SaveFileRequestApi request)
         {
-            var result = _saveFileUseCase.Execute(request);
+            using var ms = new MemoryStream();
+            await request.Content.CopyToAsync(ms);
+
+            var appRequest = new SaveFileRequest(
+                request.OriginalName,
+                ms.ToArray(),
+                request.Owner,
+                request.WorkId
+            );
+
+            var result = _saveFileUseCase.Execute(appRequest);
+
             return Ok(result);
         }
     }

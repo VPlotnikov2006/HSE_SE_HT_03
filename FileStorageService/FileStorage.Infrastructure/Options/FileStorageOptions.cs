@@ -1,5 +1,6 @@
 namespace FileStorage.Infrastructure.Options;
 
-public record FileStorageOptions(string RootPath)
+public record FileStorageOptions()
 {
+    public required string RootPath { get; init; }
 }

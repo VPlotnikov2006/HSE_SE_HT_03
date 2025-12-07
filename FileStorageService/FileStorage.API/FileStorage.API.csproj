@@ -8,10 +8,12 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.9" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="9.0.6" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\FileStorage.Application\FileStorage.Application.csproj" />
+    <ProjectReference Include="..\FileStorage.Infrastructure\FileStorage.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
