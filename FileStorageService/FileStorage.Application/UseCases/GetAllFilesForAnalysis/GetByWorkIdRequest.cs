@@ -1,5 +1,5 @@
 namespace FileStorage.Application.UseCases.GetAllFilesForAnalysis;
 
-public record GetFilesRequest(Guid WorkId)
+public record GetByWorkIdRequest(Guid WorkId)
 {
 }
