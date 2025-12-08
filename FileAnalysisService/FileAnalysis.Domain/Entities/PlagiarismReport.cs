@@ -1,4 +1,4 @@
-namespace FileAnalysis.Domain;
+namespace FileAnalysis.Domain.Entities;
 
 public class PlagiarismReport(Guid fileId, Guid workId, string owner)
 {

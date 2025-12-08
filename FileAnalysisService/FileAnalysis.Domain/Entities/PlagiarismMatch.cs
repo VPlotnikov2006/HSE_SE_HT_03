@@ -1,4 +1,4 @@
-namespace FileAnalysis.Domain;
+namespace FileAnalysis.Domain.Entities;
 
 public class PlagiarismMatch(Guid sourceFileId, Guid reportId, string sourceOwner, double similarity)
 {
