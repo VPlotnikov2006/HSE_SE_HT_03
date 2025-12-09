@@ -6,7 +6,7 @@ public class PlagiarismReport(Guid fileId, Guid workId, string owner)
     public Guid FileId { get; private set; } = fileId;
     public Guid WorkId { get; private set; } = workId;
     public string Owner { get; private set; } = owner;
-
+    public double HighestSimilarity { get; private set; } = 0;
     private readonly List<PlagiarismMatch> _matches = [];
     public IReadOnlyCollection<PlagiarismMatch> Matches => _matches;
 
@@ -20,5 +20,7 @@ public class PlagiarismReport(Guid fileId, Guid workId, string owner)
             sourceOwner,
             similarity
         ));
+
+        HighestSimilarity = Math.Max(HighestSimilarity, similarity);
     }
 }
