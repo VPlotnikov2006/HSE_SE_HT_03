@@ -6,4 +6,12 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="UseCases\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\FileAnalysis.Domain\FileAnalysis.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
