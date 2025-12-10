@@ -8,4 +8,7 @@ public class PlagiarismMatch(Guid sourceFileId, Guid reportId, string sourceOwne
     public Guid SourceFileId { get; private set; } = sourceFileId;
     public string SourceOwner { get; private set; } = sourceOwner;
     public double Similarity { get; private set; } = similarity;
+
+    // Навигационное свойство для EF
+    public PlagiarismReport? Report { get; private set; }
 }

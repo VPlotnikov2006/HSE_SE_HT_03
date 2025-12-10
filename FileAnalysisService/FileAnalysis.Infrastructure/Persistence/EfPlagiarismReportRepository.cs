@@ -1,5 +1,6 @@
 using FileAnalysis.Application.Interfaces;
 using FileAnalysis.Domain.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace FileAnalysis.Infrastructure.Persistence;
 
@@ -19,7 +20,7 @@ public class EfPlagiarismReportRepository(FileAnalysisDbContext db) : IPlagiaris
 
     public IReadOnlyCollection<PlagiarismReport> GetByWorkId(Guid workId)
     {
-        return [.. _db.Reports.Where(report => report.WorkId == workId)];
+        return [.. _db.Reports.Where(report => report.WorkId == workId).Include(r => r.Matches)];
     }
 
     public void SaveChanges()

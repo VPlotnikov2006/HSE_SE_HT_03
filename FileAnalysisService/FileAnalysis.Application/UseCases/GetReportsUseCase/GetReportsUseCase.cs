@@ -16,7 +16,7 @@ public class GetReportsUseCase(IPlagiarismReportRepository repo)
             r.FileId,
             r.Owner,
             r.HighestSimilarity,
-            r.Matches
+            [.. r.Matches.Select(m => new PlagiarismMatchDto(m.SourceFileId, m.SourceOwner, m.Similarity))]
         ))];
     }
 }

@@ -17,7 +17,7 @@ public static class InfrastructureServiceRegistration
     {
         services.AddDbContext<FileAnalysisDbContext>(options =>
         {
-            options.UseNpgsql(configuration.GetConnectionString("FileStorageDb"));
+            options.UseNpgsql(configuration.GetConnectionString("FileAnalysisDb"));
         });
 
         services.AddScoped<IPlagiarismReportRepository, EfPlagiarismReportRepository>();

@@ -34,8 +34,10 @@ public class FileAnalysisDbContext(DbContextOptions<FileAnalysisDbContext> optio
             entity.Property(r => r.CheckedAt)
                 .IsRequired();
 
-            entity.Navigation(r => r.Matches)
-                .UsePropertyAccessMode(PropertyAccessMode.Field);
+            entity.HasMany(r => r.Matches)
+                .WithOne(m => m.Report)
+                .HasForeignKey(m => m.ReportId)
+                .OnDelete(DeleteBehavior.Cascade);
         });
 
         modelBuilder.Entity<PlagiarismMatch>(entity =>
@@ -59,10 +61,10 @@ public class FileAnalysisDbContext(DbContextOptions<FileAnalysisDbContext> optio
             entity.Property(m => m.ReportId)
                 .IsRequired();
 
-            entity.HasOne<PlagiarismReport>()
-                .WithMany("_matches")
-                .HasForeignKey(m => m.ReportId)
-                .OnDelete(DeleteBehavior.Cascade);
+            // entity.HasOne<PlagiarismReport>()
+            //     .WithMany("_matches")
+            //     .HasForeignKey(m => m.ReportId)
+            //     .OnDelete(DeleteBehavior.Cascade);
         });
     }
 }

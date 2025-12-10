@@ -7,7 +7,7 @@ public record class GetReportsResponse(
     Guid FileId,
     string Owner,
     double HighestSimilarity,
-    IReadOnlyCollection<PlagiarismMatch> Matches
+    IReadOnlyCollection<PlagiarismMatchDto> Matches
 )
 {
 
