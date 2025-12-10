@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\FileAnalysis.Application\FileAnalysis.Application.csproj" />
+    <ProjectReference Include="..\FileAnalysis.Domain\FileAnalysis.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
