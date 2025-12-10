@@ -1,5 +1,5 @@
 namespace FileAnalysis.Application.DTOs;
 
-public record FileContentDTO(FileMetadataDto Metadata, byte[] Content)
+public record FileContentDto(FileMetadataDto Metadata, byte[] Content)
 {
 }

@@ -5,5 +5,5 @@ namespace FileAnalysis.Application.Interfaces;
 public interface IFileStorageClient
 {
     IReadOnlyCollection<Guid> GetFilesIdByWorkId(Guid workId);
-    FileContentDTO GetFileContent(Guid fileId);
+    FileContentDto GetFileContent(Guid fileId);
 }
