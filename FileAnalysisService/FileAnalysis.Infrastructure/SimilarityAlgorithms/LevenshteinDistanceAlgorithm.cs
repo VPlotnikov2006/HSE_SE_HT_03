@@ -69,32 +69,47 @@ public class LevenshteinDistanceAlgorithm(double pow) : ISimilarityAlgorithm
         int l1 = a.Length;
         int l2 = b.Length;
 
-        int[,] dp = new int[l1 + 1, l2 + 1];
-
-        for (int i = 0; i <= l1; i++)
+        if (l1 == 0)
         {
-            dp[i, 0] = i;
+            return l2;
         }
+        if (l2 == 0)
+        {
+            return l1;
+        }
+
+        if (l1 > l2)
+        {
+            (a, b, l1, l2) = (b, a, l2, l1);
+        }
+
+        int[] curr = new int[l2 + 1];
+        int[] prev = new int[l2 + 1];
+
         for (int j = 0; j <= l2; j++)
         {
-            dp[0, j] = j;
+            prev[j] = j;
         }
 
         for (int i = 1; i <= l1; i++)
         {
+            curr[0] = i;
             for (int j = 1; j <= l2; j++)
             {
-                if (a[i - 1] == b[j - 1])
-                {
-                    dp[i, j] = dp[i - 1, j - 1];
-                }
-                else
-                {
-                    dp[i, j] = 1 + Math.Min(Math.Min(dp[i - 1, j], dp[i, j - 1]), dp[i - 1, j - 1]);
-                }
+                int cost = (a[i - 1] == b[j - 1]) ? 0 : 1;
+
+                curr[j] = Math.Min(
+                    Math.Min(
+                        prev[j] + 1,
+                        curr[j - 1] + 1
+                    ),
+                    prev[j - 1] + cost
+                );
             }
+
+            (prev, curr) = (curr, prev);
         }
 
-        return dp[l1, l2];
+        return prev[l2];
     }
 }
