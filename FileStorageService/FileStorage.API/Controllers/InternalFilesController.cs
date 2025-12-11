@@ -12,7 +12,7 @@ namespace FileStorage.API.Controllers
         private readonly GetByWorkIdUseCase _getByWorkIdUseCase = getByWorkIdUseCase;
 
         [HttpGet("by-work/{workId:guid}")]
-        public IActionResult GetByWorkId([FromRoute] Guid workId)
+        public ActionResult<GetByWorkIdResponse> GetByWorkId([FromRoute] Guid workId)
         {
             var request = new GetByWorkIdRequest() { WorkId = workId };
             var result = _getByWorkIdUseCase.Execute(request);
@@ -20,7 +20,7 @@ namespace FileStorage.API.Controllers
         }
 
         [HttpGet("{fileId:guid}")]
-        public IActionResult GetById([FromRoute] Guid fileId)
+        public ActionResult<GetFileResponse> GetById([FromRoute] Guid fileId)
         {
             var request = new GetFileRequest() { FileId = fileId};
             var result = _getFileUseCase.Execute(request);

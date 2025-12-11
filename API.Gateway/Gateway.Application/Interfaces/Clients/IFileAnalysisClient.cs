@@ -6,5 +6,5 @@ namespace Gateway.Application.Interfaces.Clients;
 public interface IFileAnalysisClient
 {
     AnalyseFileResponse AnalyseFile(AnalyseFileRequest request);
-    GetReportsResponse GetReports(GetReportsRequest request);
+    IReadOnlyCollection<GetReportsResponse> GetReports(GetReportsRequest request);
 }

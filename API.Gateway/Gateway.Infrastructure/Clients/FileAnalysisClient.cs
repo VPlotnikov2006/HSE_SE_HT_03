@@ -24,10 +24,10 @@ public class FileAnalysisClient(HttpClient http) : IFileAnalysisClient
         return data;
     }
 
-    public GetReportsResponse GetReports(GetReportsRequest request)
+    public IReadOnlyCollection<GetReportsResponse> GetReports(GetReportsRequest request)
     {
         var response = _http
-            .GetFromJsonAsync<GetReportsResponse>($"api/reports/by-work/{request.WorkId}")
+            .GetFromJsonAsync<GetReportsResponse[]>($"api/reports/by-work/{request.WorkId}")
             .Result ?? throw new InvalidOperationException("Invalid GetReportsResponse payload.");
         return response;
     }

@@ -12,21 +12,9 @@ namespace FileStorage.API.Controllers
         private readonly SaveFileUseCase _saveFileUseCase = saveFileUseCase;
 
         [HttpPost]
-        [Consumes("multipart/form-data")]
-        public async Task<IActionResult> Upload([FromForm] SaveFileRequestApi request)
+        public ActionResult<SaveFileResponse> Upload([FromBody] SaveFileRequest request)
         {
-            using var ms = new MemoryStream();
-            await request.Content.CopyToAsync(ms);
-
-            var appRequest = new SaveFileRequest(
-                request.OriginalName,
-                ms.ToArray(),
-                request.Owner,
-                request.WorkId
-            );
-
-            var result = _saveFileUseCase.Execute(appRequest);
-
+            var result = _saveFileUseCase.Execute(request);
             return Ok(result);
         }
     }
