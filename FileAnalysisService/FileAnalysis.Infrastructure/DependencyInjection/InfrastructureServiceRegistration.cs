@@ -26,7 +26,7 @@ public static class InfrastructureServiceRegistration
         {
             client.BaseAddress = new Uri(
                 configuration["Services:FileStorage"] 
-                ?? throw new ArgumentNullException("FileStorageAddress")
+                ?? throw new ArgumentNullException(nameof(configuration), "FileStorageAddress is missing")
             );
         });
 
