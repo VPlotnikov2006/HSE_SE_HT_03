@@ -1,6 +1,4 @@
-using FileAnalysis.Domain.Entities;
-
-namespace FileAnalysis.Application.UseCases.GetReportsUseCase;
+namespace Gateway.Application.DTOs.FileAnalysisDTOs.GetReports;
 
 public record class GetReportsResponse(
     Guid ReportId,

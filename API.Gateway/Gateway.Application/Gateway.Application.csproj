@@ -6,4 +6,12 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="DTOs\FileAnalysisDTOs\GetReports\" />
+    <Folder Include="DTOs\FileStorageDTOs\" />
+    <Folder Include="Interfaces\" />
+    <Folder Include="Interfaces\Clients\" />
+    <Folder Include="UseCases\" />
+  </ItemGroup>
+
 </Project>
