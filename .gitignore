@@ -1,5 +1,8 @@
 FileStorageService/FileStorage.API/data
 
+postgres-data
+filestorage-data
+
 docker_run.bat
 
 decode.py

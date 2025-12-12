@@ -36,7 +36,19 @@ public static class Program
         {
             c.RoutePrefix = "swagger/all/ui";
             c.SwaggerEndpoint("/swagger/v1/swagger.json", "Gateway API");
-            c.SwaggerEndpoint("/swagger/all", "All Microservices");
+
+            var services = builder.Configuration.GetSection("Services").Get<Dictionary<string, string>>();
+            if (services != null)
+            {
+                foreach (var entry in services)
+                {
+                    var baseUrl = entry.Value?.TrimEnd('/');
+                    if (!string.IsNullOrEmpty(baseUrl))
+                    {
+                        c.SwaggerEndpoint($"{baseUrl}/swagger/v1/swagger.json", entry.Key);
+                    }
+                }
+            }
         });
         
         app.MapControllers();
