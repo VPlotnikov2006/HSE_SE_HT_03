@@ -30,6 +30,11 @@ public static class InfrastructureServiceRegistration
             );
         });
 
+        services.AddHttpClient<IWordCloudClient, WordCloudClient>(client =>
+        {
+            client.BaseAddress = new Uri("https://quickchart.io/wordcloud");
+        });
+
         services.AddScoped<ISimilarityAlgorithm>(sp =>
         {
             var pow = configuration.GetValue<double>(

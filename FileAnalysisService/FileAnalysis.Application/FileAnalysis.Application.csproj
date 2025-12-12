@@ -10,4 +10,8 @@
     <ProjectReference Include="..\FileAnalysis.Domain\FileAnalysis.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="UseCases\GenerateWordCloud\" />
+  </ItemGroup>
+
 </Project>

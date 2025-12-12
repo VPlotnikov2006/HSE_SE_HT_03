@@ -1,4 +1,5 @@
 using FileAnalysis.Application.UseCases.AnalyseFileUseCase;
+using FileAnalysis.Application.UseCases.GenerateWordCloud;
 using FileAnalysis.Application.UseCases.GetReportsUseCase;
 using FileAnalysis.Infrastructure.DependencyInjection;
 using FileAnalysis.Infrastructure.Persistence;
@@ -28,6 +29,7 @@ public static class Program
 
         builder.Services.AddScoped<AnalyseFileUseCase>();
         builder.Services.AddScoped<GetReportsUseCase>();
+        builder.Services.AddScoped<GenerateWordCloudUseCase>();
 
         var app = builder.Build();
         app.UseCors();
