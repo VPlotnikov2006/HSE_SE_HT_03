@@ -10,6 +10,16 @@ public static class Program
     {
         var builder = WebApplication.CreateBuilder(args);
 
+        builder.Services.AddCors(options =>
+        {
+            options.AddDefaultPolicy(policy =>
+            {
+                policy.AllowAnyOrigin()
+                    .AllowAnyHeader()
+                    .AllowAnyMethod();
+            });
+        });
+
         builder.Services.AddControllers();
 
         builder.Services.AddEndpointsApiExplorer();
@@ -22,6 +32,7 @@ public static class Program
         builder.Services.AddScoped<SaveFileUseCase>();
 
         var app = builder.Build();
+        app.UseCors();
 
         using (var scope = app.Services.CreateScope())
         {
