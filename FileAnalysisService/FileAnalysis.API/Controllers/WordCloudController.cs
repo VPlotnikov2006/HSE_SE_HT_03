@@ -12,11 +12,11 @@ namespace FileAnalysis.API.Controllers
         private readonly GenerateWordCloudUseCase _useCase = useCase;
 
         [HttpGet("{fileId:guid}")]
-        public IActionResult Generate([FromRoute] Guid fileId)
+        public ActionResult<GenerateWordCloudResponse> Generate([FromRoute] Guid fileId)
         {
             var response = _useCase.Execute(new GenerateWordCloudRequest(fileId));
 
-            return File(response.ImageBytes, "image/png");
+            return Ok(response);
         }
     }
 }

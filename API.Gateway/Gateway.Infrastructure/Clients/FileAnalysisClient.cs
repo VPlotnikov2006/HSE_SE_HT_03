@@ -1,5 +1,6 @@
 using System.Net.Http.Json;
 using Gateway.Application.DTOs.FileAnalysisDTOs.AnalyseFile;
+using Gateway.Application.DTOs.FileAnalysisDTOs.GenerateWordCloud;
 using Gateway.Application.DTOs.FileAnalysisDTOs.GetReports;
 using Gateway.Application.Interfaces.Clients;
 
@@ -22,6 +23,14 @@ public class FileAnalysisClient(HttpClient http) : IFileAnalysisClient
             .ReadFromJsonAsync<AnalyseFileResponse>()
             .Result ?? throw new InvalidOperationException("Invalid AnalyseFileResponse payload.");
         return data;
+    }
+
+    public GenerateWordCloudResponse GenerateWordCloud(GenerateWordCloudRequest request)
+    {
+        var response = _http
+            .GetFromJsonAsync<GenerateWordCloudResponse>($"api/wordcloud/{request.FileId}")
+            .Result ?? throw new InvalidOperationException("Invalid GenerateWordCloudResponse payload.");
+        return response;
     }
 
     public IReadOnlyCollection<GetReportsResponse> GetReports(GetReportsRequest request)

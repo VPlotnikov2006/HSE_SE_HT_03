@@ -14,6 +14,7 @@ public static class Program
 
         builder.Services.AddScoped<SaveFileUseCase>();
         builder.Services.AddScoped<GetReportsUseCase>();
+        builder.Services.AddScoped<GenerateWordCloudUseCase>();
 
         builder.Services.AddGatewayInfrastructure(builder.Configuration);
 

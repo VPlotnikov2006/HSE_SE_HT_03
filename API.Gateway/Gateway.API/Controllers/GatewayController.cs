@@ -1,4 +1,5 @@
 using Gateway.API.DTOs;
+using Gateway.Application.DTOs.FileAnalysisDTOs.GenerateWordCloud;
 using Gateway.Application.DTOs.FileAnalysisDTOs.GetReports;
 using Gateway.Application.DTOs.FileStorageDTOs;
 using Gateway.Application.UseCases;
@@ -10,10 +11,12 @@ namespace Gateway.API.Controllers
     [ApiController]
     public class GatewayController(
         SaveFileUseCase saveFileUseCase,
-        GetReportsUseCase getReportsUseCase) : ControllerBase
+        GetReportsUseCase getReportsUseCase,
+        GenerateWordCloudUseCase generateCloudUseCase) : ControllerBase
     {
         private readonly SaveFileUseCase _saveFileUseCase = saveFileUseCase;
         private readonly GetReportsUseCase _getReportsUseCase = getReportsUseCase;
+        private readonly GenerateWordCloudUseCase _generateCloudUseCase = generateCloudUseCase;
 
         [HttpPost("files")]
         [Consumes("multipart/form-data")]
@@ -47,6 +50,14 @@ namespace Gateway.API.Controllers
             var req = new GetReportsRequest(workId);
             var response = _getReportsUseCase.Execute(req);
             return Ok(response);
+        }
+
+        [HttpGet("wordcloud/{fileId:guid}")]
+        public IActionResult Generate([FromRoute] Guid fileId)
+        {
+            var response = _generateCloudUseCase.Execute(new GenerateWordCloudRequest(fileId));
+
+            return File(response.ImageBytes, "image/png");
         }
     }
 }

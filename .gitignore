@@ -5,6 +5,7 @@ docker_run.bat
 decode.py
 test.txt
 output_file.bin
+output_file.png
 tree.py
 
 ## Ignore Visual Studio temporary files, build results, and
