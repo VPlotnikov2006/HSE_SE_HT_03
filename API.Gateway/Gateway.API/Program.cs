@@ -42,11 +42,7 @@ public static class Program
             {
                 foreach (var entry in services)
                 {
-                    var baseUrl = entry.Value?.TrimEnd('/');
-                    if (!string.IsNullOrEmpty(baseUrl))
-                    {
-                        c.SwaggerEndpoint($"{baseUrl}/swagger/v1/swagger.json", entry.Key);
-                    }
+                    c.SwaggerEndpoint($"/swagger/all/remote/{entry.Key}/swagger.json", entry.Key);
                 }
             }
         });
